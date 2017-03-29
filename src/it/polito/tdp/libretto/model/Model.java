@@ -1,15 +1,14 @@
 package it.polito.tdp.libretto.model;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
 public class Model {
 	
-	private HashMap<String, Esame> esami = null;
+	private HashSet<Esame> esami = null;
 	
 	public Model() {
-		esami = new HashMap<String, Esame>();
+		esami = new HashSet<Esame>();
 	}
 	
 	/**
@@ -21,8 +20,8 @@ public class Model {
 	 */
 	public boolean addEsame(Esame e) {
 		
-		if(!esami.containsKey(e.getCodice())) {
-			esami.put(e.getCodice(), e);
+		if(!esami.contains(e)) {
+			esami.add(e);
 			return true ;
 		} else {
 			return false ;
@@ -36,7 +35,17 @@ public class Model {
 	 * @return l'esame trovato, oppure null se non trovato
 	 */
 	public Esame trovaEsame(String codice) {
-		return esami.get(codice);
+		Esame e = new Esame(codice);
+		if (esami.contains(e)){
+			Iterator<Esame> it = esami.iterator();
+			while(it.hasNext()){
+				Esame tempEsame = it.next();
+				if(tempEsame.equals(e)){
+					return tempEsame;
+				}
+			}
+		}
+		return null;
 	}
 
 }
