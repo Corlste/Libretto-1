@@ -1,25 +1,27 @@
 package it.polito.tdp.libretto.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 
 public class Model {
 	
-	private List<Esame> esami ;
+	private HashMap<String, Esame> esami = null;
 	
 	public Model() {
-		this.esami = new ArrayList<Esame>() ;
+		esami = new HashMap<String, Esame>();
 	}
 	
 	/**
 	 * Aggiunge un nuovo esame all'elenco degli esami presenti,
-	 * verificando che non ci sia già
+	 * verificando che non ci sia giï¿½
 	 * @param e
-	 * @return true se l'ha inserito, false se esisteva già e quindi non l'ha potuto inserire
+	 * @return true se l'ha inserito, false se esisteva giï¿½ e quindi non l'ha potuto inserire
 	 */
 	public boolean addEsame(Esame e) {
-		if(!esami.contains(e)) {
-			esami.add(e) ;
+		
+		if(!esami.containsKey(e.getCodice())) {
+			esami.put(e.getCodice(), e);
 			return true ;
 		} else {
 			return false ;
@@ -33,12 +35,7 @@ public class Model {
 	 * @return l'esame trovato, oppure null se non trovato
 	 */
 	public Esame trovaEsame(String codice) {
-		int pos = esami.indexOf( new Esame(codice, null, null) ) ;
-		if(pos==-1) {
-			return null ;
-		} else {
-			return esami.get(pos) ;
-		}
+		return esami.get(codice);
 	}
 
 }
