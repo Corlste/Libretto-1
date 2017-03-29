@@ -14,9 +14,10 @@ public class Model {
 	
 	/**
 	 * Aggiunge un nuovo esame all'elenco degli esami presenti,
-	 * verificando che non ci sia gi�
+	 * verificando che non ci sia gia'
 	 * @param e
-	 * @return true se l'ha inserito, false se esisteva gi� e quindi non l'ha potuto inserire
+	 * @return true se l'ha inserito, false se esisteva gia'
+	 * e quindi non l'ha potuto inserire
 	 */
 	public boolean addEsame(Esame e) {
 		
